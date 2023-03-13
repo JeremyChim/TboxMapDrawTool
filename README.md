@@ -1,0 +1,2 @@
+# TboxMapDrawTool
+基于python语言编写的一个地图打点工具，利用TBOX输出的GPS日志，在地图上进行坐标点和轨迹的绘制
