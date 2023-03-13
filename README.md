@@ -10,6 +10,15 @@ https://github.com/JeremyChim/TboxMapDrawTool
 
 # 更新日志：
 
+## v2.0
+2023.3.13
+ - 使用ttkbootstrap做了新的界面UI
+ - 主题可以切换
+ - 新增了时间筛选功能
+ - 优化DataFilter.py的代码
+ - 优化MapDraw.py的代码
+ - 优化WriteExcel.py的代码
+
 ## v1.8
 2023.02.24
  - 应丽敏同学的想法，做出一个时间筛选功能，目前只能筛选小时o_O...
