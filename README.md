@@ -2,7 +2,7 @@
 基于Python语言编写的一个地图打点工具，利用Tbox输出的Gps日志，在地图上进行坐标点和轨迹的绘制。
 https://github.com/JeremyChim/TboxMapDrawTool
 
-## (*^▽^*)
+## (*^▽^*)Thanks♪(･ω･)ﾉ
 
 ## 结语
 代码由丽敏同学编写  
