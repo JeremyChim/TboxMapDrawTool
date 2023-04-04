@@ -3,6 +3,7 @@ from ttkbootstrap.constants import *
 #导入第三方库
 
 import ui.Window as ui
+#
 #导入自定义函数
 
 app = ttk.Window("TBOX地图打点工具", "litera")
