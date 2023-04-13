@@ -3,6 +3,7 @@ from tkinter import filedialog
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
 import tkinter as tk
+import threading
 import function.DataFilter.DataFilter as df
 import function.MapDraw.MapDraw as md
 import function.WriteExcel.WriteExcel as we
@@ -586,7 +587,8 @@ class MapDrawTool(ttk.Frame):
             if self.point_cheak_var.get() == 'on':
                 log_to_map.create_point()
 
-            self.update_progress(locations_list)
+            t1 = threading.Thread(target=self.update_progress(locations_list))
+            t1.start()
             log_to_map.open_map()
             self.draw_pgb['value'] = 1
             self.draw_pgb.update()

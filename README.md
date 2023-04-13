@@ -12,6 +12,10 @@ https://github.com/JeremyChim/TboxMapDrawTool
 
 # 更新日志：
 
+## v2.2
+2023.4.13
+ - 引入threading线程函数，将进度条放入线程，不影响打点线程的进行
+
 ## v2.1
 2023.4.13
  - 新增一个关键字选框，方便选择关键字
