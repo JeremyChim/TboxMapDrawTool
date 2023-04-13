@@ -507,7 +507,7 @@ class MapDrawTool(ttk.Frame):
     def about(self):
         tk.messagebox.showinfo('关于 TBOX地图打点工具',
                                '作者：Mavis\n'
-                               '版本：v2.3\n'
+                               '版本：v2.31\n'
                                '时间：2023-04-13\n'
                                '思路提供：家文同学\n'
                                '测试：戴少\n'
@@ -638,7 +638,7 @@ if __name__ == '__main__':
 
     app = ttk.Window('TBOX地图打点工具', 'litera')
     MapDrawTool(app)
-    version = ttk.Label(app, text='版本：v2.3')
+    version = ttk.Label(app, text='版本：v2.31')
     version.pack(side=RIGHT, padx=15)
     app.place_window_center()    #让显现出的窗口居中
     # app.resizable(False,False)   #让窗口不可更改大小

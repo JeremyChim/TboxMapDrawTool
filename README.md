@@ -12,6 +12,10 @@ https://github.com/JeremyChim/TboxMapDrawTool
 
 # 更新日志：
 
+## v2.31
+2023.4.13
+ - 版本号没写对，重新更新一个版本
+
 ## v2.3
 2023.4.13
  - 修复无法生成Excel表的bug
