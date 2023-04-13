@@ -507,8 +507,8 @@ class MapDrawTool(ttk.Frame):
     def about(self):
         tk.messagebox.showinfo('关于 TBOX地图打点工具',
                                '作者：Mavis\n'
-                               '版本：v2.0\n'
-                               '时间：2023-03-10\n'
+                               '版本：v2.3\n'
+                               '时间：2023-04-13\n'
                                '思路提供：家文同学\n'
                                '测试：戴少\n'
                                '设计：Jer小铭'
@@ -597,7 +597,8 @@ class MapDrawTool(ttk.Frame):
         '''执行导出Excel表的动作'''
 
         _path = self.path_var.get()   # 载入log的文件路径
-        log_df = df.DataFilter(_path)    # 输入log的文件路径，进行参数初始化
+        _key = self.key_var.get()  # 载入关键字
+        log_df = df.DataFilter(file_path=_path, keyword=_key)    # 输入log的文件路径，进行参数初始化
 
         if self.time_cheak_var.get() == 'on':
             locations_list, dtime_list = log_df.return_locations_dtime_after_timefilter(
@@ -612,7 +613,8 @@ class MapDrawTool(ttk.Frame):
                                    '未找到定位坐标数据，请检查筛选的时间或者导入的GPS日志')
 
         else:
-            self.update_progress(locations_list)
+            t2 = threading.Thread(target=self.update_progress(locations_list))
+            t2.start()
             we.write_to_excel(locations = locations_list,
                               dtime = dtime_list
                               )
@@ -636,7 +638,7 @@ if __name__ == '__main__':
 
     app = ttk.Window('TBOX地图打点工具', 'litera')
     MapDrawTool(app)
-    version = ttk.Label(app, text='版本：v2.0')
+    version = ttk.Label(app, text='版本：v2.3')
     version.pack(side=RIGHT, padx=15)
     app.place_window_center()    #让显现出的窗口居中
     # app.resizable(False,False)   #让窗口不可更改大小
