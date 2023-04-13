@@ -16,6 +16,8 @@ class MapDrawTool(ttk.Frame):
 
         _path = pathlib.Path().absolute().as_posix()
         self.path_var = ttk.StringVar(value=_path)
+        self.key_var = ttk.StringVar(value="GNGGA")
+        self.key_list = ["GNGGA","GPGGA"]
         self.map_var = ttk.StringVar(value='http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=7&x={x}&y={y}&z={z}')
         self.point_cheak_var = ttk.StringVar(value='on')
         self.link_cheak_var = ttk.StringVar(value='on')
@@ -48,9 +50,11 @@ class MapDrawTool(ttk.Frame):
         var = '轨迹透明度'
         self.create_menu_row()
         self.create_path_row()
+        self.create_key_row()
         self.create_map_row()
         self.create_point_row()
         self.create_link_row()
+        self.create_draw_accuracy_row()
         self.create_link_opacity_row(var)
         self.create_time_cheak_row()
         self.create_start_time_row()
@@ -105,6 +109,19 @@ class MapDrawTool(ttk.Frame):
             # bootstyle=OUTLINE
         )
         browse_btn.pack(side=LEFT, padx=5)
+
+    def create_key_row(self):
+        key_row = ttk.Frame(self.file_lf)
+        key_row.pack(fill=X, expand=YES, pady=(15, 0))
+
+        key_lbl = ttk.Label(key_row, text='关键字')
+        key_lbl.pack(side=LEFT, padx=15)
+
+        key_cb = ttk.Combobox(key_row,
+                                   textvariable=self.key_var,
+                                   values=self.key_list)
+
+        key_cb.pack(side=LEFT, padx=15 ,fill=X, expand=YES)
 
     def create_draw_row(self):
         '''将draw行添加至标签框架'''
@@ -336,8 +353,8 @@ class MapDrawTool(ttk.Frame):
         self.link_opacity_var.set(value=value)
 
     def create_draw_accuracy_row(self):
-        draw_accuracy_row = ttk.Frame(self.accuracy_lf)
-        draw_accuracy_row.pack(fill=X, expand=YES)
+        draw_accuracy_row = ttk.Frame(self.style_lf)
+        draw_accuracy_row.pack(fill=X, expand=YES, pady=(15,0))
         draw_accuracy_lbl = ttk.Label(draw_accuracy_row, text='坐标点数量', width=9)
         draw_accuracy_lbl.pack(side=LEFT, padx=15)
 
@@ -527,6 +544,7 @@ class MapDrawTool(ttk.Frame):
         '''执行地图打点的动作'''
         print('开始启动打点程序...')
         print(f'log路径: {self.path_var.get()}')
+        print(f'关键字: {self.key_var.get()}')
         print(f'轨迹风格: {self.link_var.get()}')
         print(f'途经点风格: {self.point_var.get()}')
         print(f'地图源：{self.map_var.get()}')
@@ -539,7 +557,8 @@ class MapDrawTool(ttk.Frame):
         print('-' * 50)
 
         _path = self.path_var.get()   # 载入log的文件路径
-        log_df = df.DataFilter(_path)    # 输入log的文件路径，进行参数初始化
+        _key = self.key_var.get()    # 载入关键字
+        log_df = df.DataFilter(file_path=_path, keyword=_key)    # 输入log的文件路径，进行参数初始化
 
         if self.time_cheak_var.get() == 'on':
             locations_list, dtime_list = log_df.return_locations_dtime_after_timefilter(
@@ -618,5 +637,5 @@ if __name__ == '__main__':
     version = ttk.Label(app, text='版本：v2.0')
     version.pack(side=RIGHT, padx=15)
     app.place_window_center()    #让显现出的窗口居中
-    app.resizable(False,False)   #让窗口不可更改大小
+    # app.resizable(False,False)   #让窗口不可更改大小
     app.mainloop()

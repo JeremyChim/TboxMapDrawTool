@@ -7,10 +7,10 @@ import time
 
 class DataFilter:
 
-    def __init__(self,file_path):
+    def __init__(self, file_path, keyword="GNGGA"):
         '''输入log的文件路径，进行参数初始化'''
         self.logfile = codecs.open(file_path, encoding="GBK", errors='ignore')
-        self.keyword = "GNGGA"
+        self.keyword = keyword
         self.x_pi = 3.14159265358979324 * 3000.0 / 180.0  # 圆周率π
         self.pi = 3.1415926535897932384626  # 长半轴长度
         self.a = 6378245.0  # 地球的角离心率
