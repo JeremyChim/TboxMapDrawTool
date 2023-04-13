@@ -12,6 +12,11 @@ https://github.com/JeremyChim/TboxMapDrawTool
 
 # 更新日志：
 
+## v2.1
+2023.4.13
+ - 新增一个关键字选框，方便选择关键字
+ - 新增一个坐标点数量的选择行
+
 ## v2.0
 2023.3.13
  - 使用ttkbootstrap做了新的界面UI
